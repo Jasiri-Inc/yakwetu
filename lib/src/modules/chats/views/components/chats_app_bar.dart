@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../constants/constants.dart';
+import '../../../../constants/constants.dart';
 
 AppBar chatsAppBar(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.white,
+    automaticallyImplyLeading: false,
     elevation: 0,
     title: RichText(
       text: TextSpan(
@@ -19,7 +20,7 @@ AppBar chatsAppBar(BuildContext context) {
             style: TextStyle(color: kSecondaryColor),
           ),
           TextSpan(
-            text: "Pay",
+            text: "Lists",
             style: TextStyle(color: kPrimaryColor),
           ),
         ],
@@ -28,9 +29,9 @@ AppBar chatsAppBar(BuildContext context) {
     actions: <Widget>[
       IconButton(
         icon: SvgPicture.asset(
-          "assets/icons/plus.svg",
+          "assets/icons/add.svg",
           height: 35,
-          width: 18,
+          width: 35,
         ),
         onPressed: () {},
       ),
