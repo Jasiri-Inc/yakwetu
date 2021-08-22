@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yakwetu/src/modules/chats/chats_screen.dart';
 
 import 'config/theme.dart';
+import 'modules/chats/views/chats_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
