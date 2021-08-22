@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yakwetu/src/constants/constants.dart';
+import 'package:yakwetu/src/modules/chat_inbox/views/chat_inbox_screen.dart';
 
 class ConversationList extends StatefulWidget {
   String? name;
@@ -21,7 +22,11 @@ class _ConversationListState extends State<ConversationList> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return ChatInboxScreen();
+        }));
+      },
       child: Container(
         padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
         child: Row(
