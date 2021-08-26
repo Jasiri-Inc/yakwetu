@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yakwetu/src/constants/constants.dart';
-import 'package:yakwetu/src/modules/chat_inbox/views/chat_inbox_screen.dart';
+import 'package:yakwetu/src/modules/chat_inbox/presentation/chat_inbox_screen.dart';
 
 class ConversationList extends StatefulWidget {
   String? name;

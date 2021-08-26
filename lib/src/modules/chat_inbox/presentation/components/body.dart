@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yakwetu/src/constants/constants.dart';
-import 'package:yakwetu/src/modules/chat_inbox/models/chat_message.dart';
+import 'package:yakwetu/src/modules/chat_inbox/data/chat_message.dart';
 
 class ChatInboxBody extends StatefulWidget {
   const ChatInboxBody({Key? key}) : super(key: key);
