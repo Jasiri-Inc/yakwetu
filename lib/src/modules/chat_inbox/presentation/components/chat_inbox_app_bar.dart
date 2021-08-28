@@ -37,21 +37,25 @@ AppBar chatInboxAppBar(BuildContext context) {
                 children: <Widget>[
                   Text(
                     "Francis TAll",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(
-                    height: 6,
+                    height: 3,
                   ),
                   Text(
                     "online",
-                    style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
+                    style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
                   ),
                 ],
               ),
             ),
             Icon(
-              Icons.settings,
-              color: Colors.black54,
+              Icons.call,
+              color: Colors.black,
             ),
           ],
         ),

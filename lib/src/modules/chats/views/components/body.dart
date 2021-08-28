@@ -84,7 +84,7 @@ class _ChatsBodyState extends State<ChatsBody> {
                 hintStyle: TextStyle(color: Colors.grey.shade600),
                 prefixIcon: Icon(
                   Icons.search,
-                  color: Colors.grey.shade600,
+                  color: Colors.grey,
                   size: 20,
                 ),
                 filled: true,

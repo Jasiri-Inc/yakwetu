@@ -43,15 +43,6 @@ class _ChatInboxBottomBarState extends State<ChatInboxBottomBar> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.sentiment_satisfied_alt_outlined,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyText1!
-                          .color!
-                          .withOpacity(0.64),
-                    ),
-                    SizedBox(width: getProportionateScreenWidth(5) / 4),
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
@@ -60,26 +51,18 @@ class _ChatInboxBottomBarState extends State<ChatInboxBottomBar> {
                         ),
                       ),
                     ),
-                    Icon(
-                      Icons.attach_file,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyText1!
-                          .color!
-                          .withOpacity(0.64),
-                    ),
-                    SizedBox(width: getProportionateScreenWidth(5) / 4),
-                    Icon(
-                      Icons.camera_alt_outlined,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyText1!
-                          .color!
-                          .withOpacity(0.64),
-                    ),
                   ],
                 ),
               ),
+            ),
+            SizedBox(width: getProportionateScreenWidth(5) / 4),
+            Icon(
+              Icons.camera_alt_outlined,
+              color: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .color!
+                  .withOpacity(0.8),
             ),
           ],
         ),
