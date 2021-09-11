@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yakwetu/src/config/size_config.dart';
 import 'package:yakwetu/src/constants/constants.dart';
+import 'package:yakwetu/src/modules/chat_inbox/data/chat_inbox_providers.dart';
+import 'package:yakwetu/src/modules/chat_inbox/data/chat_message.dart';
 
 class ChatInboxBottomBar extends StatefulWidget {
   const ChatInboxBottomBar({Key? key}) : super(key: key);
@@ -10,6 +12,13 @@ class ChatInboxBottomBar extends StatefulWidget {
 }
 
 class _ChatInboxBottomBarState extends State<ChatInboxBottomBar> {
+  final messageController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +39,11 @@ class _ChatInboxBottomBarState extends State<ChatInboxBottomBar> {
       child: SafeArea(
         child: Row(
           children: [
-            Icon(Icons.add, color: kSecondaryColor),
+            GestureDetector(
+                onTap: () {
+                  print('object');
+                },
+                child: Icon(Icons.add, color: kTextColor)),
             SizedBox(width: getProportionateScreenWidth(10)),
             Expanded(
               child: Container(
@@ -49,6 +62,7 @@ class _ChatInboxBottomBarState extends State<ChatInboxBottomBar> {
                           hintText: "Type message",
                           border: InputBorder.none,
                         ),
+                        controller: messageController,
                       ),
                     ),
                   ],
@@ -56,17 +70,33 @@ class _ChatInboxBottomBarState extends State<ChatInboxBottomBar> {
               ),
             ),
             SizedBox(width: getProportionateScreenWidth(5) / 4),
-            Icon(
-              Icons.camera_alt_outlined,
-              color: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .color!
-                  .withOpacity(0.8),
+            GestureDetector(
+              onTap: () {
+                print(messageController.text);
+                _sendMessage(messageController.text);
+                messageController.clear();
+              },
+              child: Icon(
+                Icons.send,
+                color: kTextColor,
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    messageController.dispose();
+    super.dispose();
+  }
+
+  void _sendMessage(String text) {
+    ChatMessage newMessage =
+        ChatMessage(messageContent: text, messageType: 'sender');
+    messages.add(newMessage);
+    print(messages);
   }
 }
