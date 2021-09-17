@@ -1,8 +1,10 @@
 import 'package:message_chat/message_chat.dart';
+import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:yakwetu/src/cores/local_storage/models/chart.dart';
 import 'package:yakwetu/src/cores/local_storage/models/local_message.dart';
 
+// datasource contract
 abstract class IDataSource {
   Future<void> addChat(Chat chat);
   Future<void> addMessage(LocalMessage message);
@@ -14,6 +16,7 @@ abstract class IDataSource {
   Future<void> updateMessageReceipt(String messageId, ReceiptStatus status);
 }
 
+// SQL datasource
 class SqfliteDatasource implements IDataSource {
   final Database _db;
 
@@ -134,5 +137,51 @@ class SqfliteDatasource implements IDataSource {
           whereArgs: [messageId],
           conflictAlgorithm: ConflictAlgorithm.replace);
     });
+  }
+}
+
+// DB factory file
+class LocalDatabaseFactory {
+  Future<Database> createDatabase() async {
+    String databasesPath = await getDatabasesPath();
+    String dbPath = join(databasesPath, 'labalaba.db');
+
+    var database = await openDatabase(dbPath, version: 1, onCreate: populateDb);
+    return database;
+  }
+
+  void populateDb(Database db, int version) async {
+    await _createChatTable(db);
+    await _createMessagesTable(db);
+  }
+
+  _createChatTable(Database db) async {
+    await db
+        .execute(
+          """CREATE TABLE chats(
+            id TEXT PRIMARY KEY,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            )""",
+        )
+        .then((_) => print('creating table chats...'))
+        .catchError((e) => print('error creating chats table: $e'));
+  }
+
+  _createMessagesTable(Database db) async {
+    await db
+        .execute("""
+          CREATE TABLE messages(
+            chat_id TEXT NOT NULL,
+            id TEXT PRIMARY KEY,
+            sender TEXT NOT NULL,
+            receiver TEXT NOT NULL,
+            contents TEXT NOT NULL,
+            receipt TEXT NOT NULL,
+            received_at TIMESTAMP NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            )
+      """)
+        .then((_) => print('creating table messages'))
+        .catchError((e) => print('error creating messages table: $e'));
   }
 }
