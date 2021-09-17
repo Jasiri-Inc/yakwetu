@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   rethink_db_ns: ^0.0.2  
-  # rethink_db_ns: ^2.3.2+6
+  # rethinkdb_dart: ^2.3.2+6
   encrypt: ^5.0.1
 
 dev_dependencies:

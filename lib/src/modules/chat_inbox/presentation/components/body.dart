@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yakwetu/src/constants/constants.dart';
-import 'package:yakwetu/src/modules/chat_inbox/data/chat_inbox_providers.dart';
+import 'package:yakwetu/src/modules/chat_inbox/data/chat_message.dart';
 import 'package:yakwetu/src/modules/chat_inbox/presentation/components/chat_inbox_bottom_bar.dart';
 
 class ChatInboxBody extends StatefulWidget {
@@ -11,6 +11,25 @@ class ChatInboxBody extends StatefulWidget {
 }
 
 class _ChatInboxBodyState extends State<ChatInboxBody> {
+  List<ChatMessage> messages = [
+    ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
+    ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
+    ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
+    ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
+    ChatMessage(
+        messageContent: "Hey Chris, I am doing fine dude. wbu? i miss you",
+        messageType: "sender"),
+    ChatMessage(messageContent: "eh, doing OK.", messageType: "receiver"),
+    ChatMessage(
+        messageContent: "Is there any thing wrong?", messageType: "sender"),
+    ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
+    ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
+    ChatMessage(
+        messageContent: "Is there any thing wrong?", messageType: "sender"),
+    ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
+    ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(

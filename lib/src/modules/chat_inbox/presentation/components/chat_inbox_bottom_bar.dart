@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yakwetu/src/config/size_config.dart';
 import 'package:yakwetu/src/constants/constants.dart';
-import 'package:yakwetu/src/modules/chat_inbox/data/chat_inbox_providers.dart';
 import 'package:yakwetu/src/modules/chat_inbox/data/chat_message.dart';
 
 class ChatInboxBottomBar extends StatefulWidget {
@@ -96,7 +95,5 @@ class _ChatInboxBottomBarState extends State<ChatInboxBottomBar> {
   void _sendMessage(String text) {
     ChatMessage newMessage =
         ChatMessage(messageContent: text, messageType: 'sender');
-    messages.add(newMessage);
-    print(messages);
   }
 }
