@@ -26,7 +26,7 @@ void main() {
       username: 'test',
       photoUrl: 'url',
       active: true,
-      lastseen: DateTime.now(),
+      lastSeen: DateTime.now(),
     );
     final userWithId = await sut.connect(user);
     expect(userWithId.id, isNotEmpty);
@@ -37,7 +37,7 @@ void main() {
       username: 'test',
       photoUrl: 'url',
       active: true,
-      lastseen: DateTime.now(),
+      lastSeen: DateTime.now(),
     );
     //arrange
     await sut.connect(user);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yakwetu/src/modules/chats/models/chat_user.dart';
+import 'package:yakwetu/src/modules/chats/data/chat_user.dart';
 
 import 'conversation_list.dart';
 

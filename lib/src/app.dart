@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'config/themes/theme_config.dart';
-import 'modules/chats/views/chats_screen.dart';
+import 'modules/chats/presentation/chats_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

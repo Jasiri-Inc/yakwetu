@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:message_chat/message_chat.dart';
 import 'package:message_chat/src/models/typing_event.dart';
 import 'package:message_chat/src/models/user.dart';
-import 'package:message_chat/src/services/typing_event/typing_event_service_contract.dart';
+import 'package:message_chat/src/services/typing/typing_service_contract.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:rethink_db_ns/rethink_db_ns.dart';
 
@@ -20,7 +20,6 @@ class TypingNotification implements ITypingNotification {
 
   @override
   Future<bool> send({@required TypingEvent? event}) async {
-
     // FIXME: Fix this null safety logic
 
     // final receiver = await _userService.fetch(event.to);

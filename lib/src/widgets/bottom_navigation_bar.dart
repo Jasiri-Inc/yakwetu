@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yakwetu/src/constants/constants.dart';
 import 'package:yakwetu/src/constants/enums.dart';
 import 'package:yakwetu/src/modules/calls/calls_screen.dart';
-import 'package:yakwetu/src/modules/chats/views/chats_screen.dart';
+import 'package:yakwetu/src/modules/chats/presentation/chats_screen.dart';
 import 'package:yakwetu/src/modules/contacts/contacts_screen.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {

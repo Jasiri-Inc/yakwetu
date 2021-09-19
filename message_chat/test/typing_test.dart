@@ -1,8 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:message_chat/src/models/typing_event.dart';
 import 'package:message_chat/src/models/user.dart';
-import 'package:message_chat/src/services/typing_event/typing_event_service_impl.dart';
-// ignore: import_of_legacy_library_into_null_safe
+import 'package:message_chat/src/services/typing/typing_service_impl.dart';
 import 'package:rethink_db_ns/rethink_db_ns.dart';
 
 import 'helpers.dart';

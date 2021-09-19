@@ -6,8 +6,8 @@ import 'package:yakwetu/src/cores/local_storage/models/chart.dart';
 import 'package:yakwetu/src/cores/local_storage/models/local_message.dart';
 import 'package:yakwetu/src/modules/chat_inbox/data/chat_inbox_repository.dart';
 
-import './chat_view_model_test.mocks.dart';
-import '../lib/src/modules/chat_inbox/data/chat_inbox_providers.dart';
+import '../../lib/src/modules/chat_inbox/data/chat_inbox_providers.dart';
+import 'chat_view_model_test.mocks.dart';
 
 @GenerateMocks([IDataSource])
 void main() {
