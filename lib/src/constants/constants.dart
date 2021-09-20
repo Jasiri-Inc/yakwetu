@@ -11,6 +11,11 @@ const kPrimaryGradientColor = LinearGradient(
 );
 const kSecondaryColor = Color(0xFFF1EEEE);
 const kTextColor = Color(0xFFBBBABA);
+const kAppBarDark = Color(0xFF111111);
+const kBubbleLight = Color(0xFFE8E8E8);
+const kBubbleDark = Color(0xFF262629);
+const kIconLight = Color(0xFF999999);
+const kIndicatorBubble = Color(0xFF39B54A);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
