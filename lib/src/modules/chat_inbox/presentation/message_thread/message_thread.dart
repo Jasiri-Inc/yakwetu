@@ -198,7 +198,7 @@ class _MessageThreadState extends State<MessageThread> {
       onFocusChange: (focus) {
         if (_startTypingTimer == null || (_startTypingTimer != null && focus))
           return;
-        _stopTypingTimer?.cancel();
+        _stopTypingTimer.cancel();
         _dispatchTyping(Typing.stop);
       },
       child: TextFormField(
@@ -268,8 +268,8 @@ class _MessageThreadState extends State<MessageThread> {
     widget.messageBloc.add(sendMessageEvent);
 
     _textEditingController.clear();
-    _startTypingTimer?.cancel();
-    _stopTypingTimer?.cancel();
+    _startTypingTimer.cancel();
+    _stopTypingTimer.cancel();
 
     _dispatchTyping(Typing.stop);
   }
@@ -284,9 +284,9 @@ class _MessageThreadState extends State<MessageThread> {
   void _sendTypingNotification(String text) {
     if (text.trim().isEmpty || messages.isEmpty) return;
 
-    if (_startTypingTimer?.isActive ?? false) return;
+    if (_startTypingTimer.isActive) return;
 
-    if (_stopTypingTimer?.isActive ?? false) _stopTypingTimer?.cancel();
+    if (_stopTypingTimer.isActive) _stopTypingTimer.cancel();
 
     _dispatchTyping(Typing.start);
 
@@ -320,9 +320,9 @@ class _MessageThreadState extends State<MessageThread> {
   @override
   void dispose() {
     _textEditingController.dispose();
-    _subscription?.cancel();
-    _stopTypingTimer?.cancel();
-    _startTypingTimer?.cancel();
+    _subscription.cancel();
+    _stopTypingTimer.cancel();
+    _startTypingTimer.cancel();
     super.dispose();
   }
 }

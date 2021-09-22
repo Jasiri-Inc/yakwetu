@@ -27,7 +27,7 @@ class ProfileUpload extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundColor: Colors.transparent,
-                child: BlocBuilder<ProfileImageCubit, File>(
+                child: BlocBuilder<ProfileImageCubit, File?>(
                   builder: (context, state) {
                     return state == null
                         ? Icon(Icons.person_outline_rounded,

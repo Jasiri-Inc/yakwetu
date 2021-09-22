@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ProfileImageCubit extends Cubit<File> {
+class ProfileImageCubit extends Cubit<File?> {
   final _picker = ImagePicker();
-  ProfileImageCubit() : super(File('path'));
+  ProfileImageCubit() : super(null);
 
   Future<void> getImage() async {
     PickedFile? image =

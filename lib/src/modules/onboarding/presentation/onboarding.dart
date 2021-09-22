@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yakwetu/src/constants/constants.dart';
 import 'package:yakwetu/src/widgets/custom_text_field.dart';
-import 'package:yakwetu/src/widgets/logo.dart';
 import 'package:yakwetu/src/widgets/profile_upload.dart';
 
 import '../onboarding_cubit.dart';
@@ -38,7 +37,7 @@ class _OnboardingState extends State<Onboarding> {
             Padding(
               padding: EdgeInsets.only(left: 20.0, right: 20.0),
               child: CustomTextField(
-                hint: 'wah yuh name?',
+                hint: 'what is your name?',
                 height: 45.0,
                 onchanged: (val) {
                   _username = val;
@@ -70,7 +69,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 45.0,
                   alignment: Alignment.center,
                   child: Text(
-                    'Mek wi chat!',
+                    'Lets start the chat',
                     style: Theme.of(context).textTheme.button!.copyWith(
                           fontSize: 18.0,
                           color: Colors.white,
@@ -110,17 +109,17 @@ class _OnboardingState extends State<Onboarding> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Laba',
+          'Ya',
           style: Theme.of(context)
               .textTheme
               .headline4!
               .copyWith(fontWeight: FontWeight.bold),
         ),
         SizedBox(width: 8.0),
-        Logo(),
+        // Logo(),
         SizedBox(width: 8.0),
         Text(
-          'Laba',
+          'Kwetu',
           style: Theme.of(context)
               .textTheme
               .headline4!
@@ -132,7 +131,7 @@ class _OnboardingState extends State<Onboarding> {
 
   _connectSession() async {
     final profileImage = context.read<ProfileImageCubit>().state;
-    await context.read<OnboardingCubit>().connect(_username, profileImage);
+    await context.read<OnboardingCubit>().connect(_username, profileImage!);
   }
 
   String _checkInputs() {
