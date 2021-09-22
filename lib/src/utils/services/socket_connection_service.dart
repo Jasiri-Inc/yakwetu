@@ -1,8 +1,7 @@
 import 'package:socket_io_client/socket_io_client.dart';
 
 class SocketConnectionService {
-  
-Socket socket = io(
+  Socket socket = io(
       'https://yakwetu-backend.herokuapp.com/',
       OptionBuilder()
           .setTransports(['websocket']) // for Flutter or Dart VM
@@ -22,6 +21,6 @@ Socket socket = io(
   }
 
   void sendMessage(String message) {
-socket.emit('msg', message);
+    socket.emit('msg', message);
   }
 }

@@ -1,5 +1,3 @@
-
-
 import 'package:message_chat/src/models/user.dart';
 
 abstract class IUserService {

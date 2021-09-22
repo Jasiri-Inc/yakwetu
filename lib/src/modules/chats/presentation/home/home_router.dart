@@ -3,7 +3,7 @@ import 'package:message_chat/message_chat.dart';
 
 abstract class IHomeRouter {
   Future<void> onShowMessageThread(BuildContext context, User receiver, User me,
-      {String chatId});
+      {required String chatId});
 }
 
 class HomeRouter implements IHomeRouter {
@@ -14,7 +14,7 @@ class HomeRouter implements IHomeRouter {
 
   @override
   Future<void> onShowMessageThread(BuildContext context, User receiver, User me,
-      {String chatId}) {
+      {required String chatId}) {
     return Navigator.push(
       context,
       MaterialPageRoute(

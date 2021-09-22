@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:yakwetu/src/utils/services/socket_connection_service.dart';
+import 'package:yakwetu/src/composition_root.dart';
+
 
 import 'src/app.dart';
 
-void main() {
+void main() async{
+ WidgetsFlutterBinding.ensureInitialized();
+  await CompositionRoot.configure();
+    final firstPage = CompositionRoot.start();
 
-  SocketConnectionService newSocket = SocketConnectionService();
-  newSocket.createConnection();
-
-  runApp(MyApp());
-
+  runApp(MyApp(firstPage));
 }

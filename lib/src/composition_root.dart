@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' hide Key;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:message_chat/message_chat.dart';
 import 'package:rethink_db_ns/rethink_db_ns.dart';
@@ -13,18 +13,23 @@ import 'modules/chat_inbox/business_logic/receipt/receipt_bloc.dart';
 import 'modules/chat_inbox/business_logic/typing/typing_bloc.dart';
 import 'modules/chat_inbox/data/chat_inbox_providers.dart';
 import 'modules/chat_inbox/data/chat_inbox_repository.dart';
+import 'modules/chat_inbox/presentation/message_thread/message_thread.dart';
 import 'modules/chats/business_logic/chats_cubit.dart';
 import 'modules/chats/business_logic/home_cubit.dart';
+import 'modules/chats/presentation/home/home.dart';
 import 'modules/chats/presentation/home/home_router.dart';
 import 'modules/onboarding/onboarding_cubit.dart';
 import 'modules/onboarding/presentation/onboarding.dart';
 import 'modules/onboarding/presentation/onboarding_router.dart';
 import 'modules/onboarding/profile_image_cubit.dart';
+import 'package:encrypt/encrypt.dart';
+
 
 class CompositionRoot {
   static late RethinkDb _r;
   static late Connection _connection;
   static late IUserService _userService;
+  static late EncryptionService _encryptionService;
   static late Database _db;
   static late IMessageService _messageService;
   static late IDataSource _datasource;
@@ -38,7 +43,8 @@ class CompositionRoot {
     _r = RethinkDb();
     _connection = await _r.connect(host: '127.0.0.1', port: 28015);
     _userService = UserService(_r, _connection);
-    _messageService = MessageService(_r, _connection, encryption: null);
+    _encryptionService = EncryptionService(Encrypter(AES(Key.fromLength(32))));
+    _messageService = MessageService(_r, _connection, encryption: _encryptionService);
     _typingNotification = TypingNotification(_r, _connection, _userService);
     _db = await LocalDatabaseFactory().createDatabase();
     _datasource = SqfliteDatasource(_db);
@@ -97,7 +103,7 @@ class CompositionRoot {
   }
 
   static Widget composeMessageThreadUi(User receiver, User me,
-      {required String chatId}) {
+      {String? chatId}) {
     ChatViewModel viewModel = ChatViewModel(_datasource);
     MessageThreadCubit messageThreadCubit = MessageThreadCubit(viewModel);
     IReceiptService receiptService = ReceiptService(_r, _connection);
@@ -114,7 +120,7 @@ class CompositionRoot {
         _messageBloc,
         _chatsCubit,
         _typingNotificationBloc,
-        chatId: chatId,
+        chatId: chatId!,
       ),
     );
   }
