@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' hide Key;
 import 'package:flutter/material.dart' hide Key;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:message_chat/message_chat.dart';
@@ -39,9 +40,12 @@ class CompositionRoot {
   static late TypingNotificationBloc _typingNotificationBloc;
   static late ChatsCubit _chatsCubit;
 
+  static const kHostAndroid = '10.0.2.2';
+  static const kHostIos = '127.0.0.1';
+
   static configure() async {
     _r = RethinkDb();
-    _connection = await _r.connect(host: '127.0.0.1', port: 28015);
+    _connection = defaultTargetPlatform == TargetPlatform.iOS ? await _r.connect(host: kHostIos, port: 28015) : await _r.connect(host: kHostAndroid, port: 28015);
     _userService = UserService(_r, _connection);
     _encryptionService = EncryptionService(Encrypter(AES(Key.fromLength(32))));
     _messageService = MessageService(_r, _connection, encryption: _encryptionService);
@@ -67,7 +71,10 @@ class CompositionRoot {
   }
 
   static Widget composeOnboardingUi() {
-    ImageUploader imageUploader = ImageUploader('http://localhost:3000/upload');
+
+    String _url = defaultTargetPlatform == TargetPlatform.iOS ? 'http://localhost:3000/upload' : 'http://10.0.2.2:3000/upload';
+
+    ImageUploader imageUploader = ImageUploader(_url);
 
     OnboardingCubit onboardingCubit =
         OnboardingCubit(_userService, imageUploader, _localCache);
