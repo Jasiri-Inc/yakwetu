@@ -58,7 +58,7 @@ class CompositionRoot {
     _typingNotificationBloc = TypingNotificationBloc(_typingNotification);
     final viewModel = ChatsViewModel(_datasource, _userService);
     _chatsCubit = ChatsCubit(viewModel);
-
+    
     // _db.delete('chats');
     // _db.delete('messages');
   }

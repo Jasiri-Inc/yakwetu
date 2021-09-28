@@ -76,7 +76,7 @@ class _MessageThreadState extends State<MessageThread> {
                     TypingNotificationState>(
               bloc: widget.typingNotificationBloc,
               builder: (_, state) {
-                late bool typing;
+                bool typing = false;
                 if (state is TypingNotificationReceivedSuccess &&
                     state.event.event == Typing.start &&
                     state.event.from == receiver.id) {
@@ -160,8 +160,8 @@ class _MessageThreadState extends State<MessageThread> {
                 ),
               ),
             ),
-          )
-        ]),
+          ),
+        ],),
       ),
     );
   }
@@ -196,8 +196,6 @@ class _MessageThreadState extends State<MessageThread> {
 
     return Focus(
       onFocusChange: (focus) {
-        if (_startTypingTimer == null || (_startTypingTimer != null && focus))
-          return;
         _stopTypingTimer.cancel();
         _dispatchTyping(Typing.stop);
       },
@@ -255,7 +253,7 @@ class _MessageThreadState extends State<MessageThread> {
     });
   }
 
-  _sendMessage() {
+  void _sendMessage() {
     if (_textEditingController.text.trim().isEmpty) return;
 
     final message = Message(
@@ -297,12 +295,12 @@ class _MessageThreadState extends State<MessageThread> {
         Timer(Duration(seconds: 6), () => _dispatchTyping(Typing.stop));
   }
 
-  _scrollToEnd() {
+  void _scrollToEnd() {
     _scrollController.animateTo(_scrollController.position.maxScrollExtent,
         duration: Duration(milliseconds: 200), curve: Curves.easeInOut);
   }
 
-  _sendReceipt(LocalMessage message) async {
+  void _sendReceipt(LocalMessage message) async {
     if (message.receipt == ReceiptStatus.read) return;
     final receipt = Receipt(
       recipient: message.message.from,
